@@ -19,8 +19,9 @@
     <div>Losses: </div>
     <div id="losses">0 </div>
     <div>Chances left: </div>
-    <div id="chances">7</div>
-    <div>Letters guessed:</div><div id="guesses"> </div>
+    <div id="chances"> </div>
+    <div>Letters guessed:</div>
+    <div id="guesses"> </div>
 
 
 </body>
@@ -33,10 +34,11 @@
     var losses = 1;
     var chancesLeft = 6;
     var currentGuesses = 0;
-    var stopEVERYTHING = false;
     console.log(computerChoice);
 
-
+    $(document).ready(function () {
+        $("#chances").html("7");
+    });
 
     $(document).keypress(function (event) {
         var playerChoice = (String.fromCharCode(event.which));
@@ -44,8 +46,8 @@
         if (computerChoice == playerChoice) {
             $("#score").text(score++);
             $("#guesses").empty();
-            delete chancesLeft;
             chancesLeft = 6;
+            $("#chances").html("7");
             computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
             console.log(computerChoice);
 
@@ -58,11 +60,11 @@
             alert("Sorry! Try again!");
             $("#losses").text(losses++);
             $("#guesses").empty();
-            delete chancesLeft;
             chancesLeft = 6;
+            $("#chances").html("7");
             computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
             console.log(computerChoice);
-            
+
         }
     });
 
