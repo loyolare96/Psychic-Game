@@ -16,10 +16,11 @@
 
     <div>Score: </div>
     <div id="score"> 0</div>
-    <div id="losses">Losses: 0 </div>
+    <div>Losses: </div>
+    <div id="losses">0 </div>
     <div>Chances left: </div>
     <div id="chances">7</div>
-    <div id="guesses">Letters guessed: </div>
+    <div>Letters guessed:</div><div id="guesses"> </div>
 
 
 </body>
@@ -28,8 +29,8 @@
     var possibleChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
         "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
-    var score = 0;
-    var losses = 0;
+    var score = 1;
+    var losses = 1;
     var chancesLeft = 6;
     var currentGuesses = 0;
     var stopEVERYTHING = false;
@@ -42,21 +43,29 @@
         $("#guesses").append(playerChoice);
         if (computerChoice == playerChoice) {
             $("#score").text(score++);
+            $("#guesses").empty();
+            delete chancesLeft;
+            chancesLeft = 6;
+            computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
+            console.log(computerChoice);
 
         }
         else {
             $("#chances").text(chancesLeft--);
         }
 
-
+        if (chancesLeft == -1) {
+            alert("Sorry! Try again!");
+            $("#losses").text(losses++);
+            $("#guesses").empty();
+            delete chancesLeft;
+            chancesLeft = 6;
+            computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
+            console.log(computerChoice);
+            
+        }
     });
 
-    if (chancesLeft === 0) {
-        stopEVERYTHING = true;
-    }
-    else {
-        stopEVERYTHING = false;
-    }
 
 
 
