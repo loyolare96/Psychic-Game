@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Psychic</title>
+</head>
+
+<body>
+    <h2>Welcome to Psychic! Please pick a letter.</h2>
+
+    <div>Score: </div>
+    <div id="score"> 0</div>
+    <div id="losses">Losses: 0 </div>
+    <div>Chances left: </div>
+    <div id="chances">7</div>
+    <div id="guesses">Letters guessed: </div>
+
+
+</body>
+
+<script>
+    var possibleChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+        "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var computerChoice = possibleChoice[Math.floor(Math.random() * possibleChoice.length)];
+    var score = 0;
+    var losses = 0;
+    var chancesLeft = 6;
+    var currentGuesses = 0;
+    var stopEVERYTHING = false;
+    console.log(computerChoice);
+
+
+
+    $(document).keypress(function (event) {
+        var playerChoice = (String.fromCharCode(event.which));
+        $("#guesses").append(playerChoice);
+        if (computerChoice == playerChoice) {
+            $("#score").text(score++);
+
+        }
+        else {
+            $("#chances").text(chancesLeft--);
+        }
+
+
+    });
+
+    if (chancesLeft === 0) {
+        stopEVERYTHING = true;
+    }
+    else {
+        stopEVERYTHING = false;
+    }
+
+
+
+
+</script>
+
+</html>
